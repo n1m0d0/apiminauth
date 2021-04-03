@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApiUserController;
 use App\Http\Controllers\ApiProfileController;
 use App\Http\Controllers\ApiInstitutionController;
@@ -20,6 +21,9 @@ use App\Http\Controllers\ApiInstitutionController;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
+Route::post('userProfile', [AuthController::class, 'userProfile']);
 
 Route::apiResource('users', ApiUserController::class);
 Route::apiResource('profiles', ApiProfileController::class);

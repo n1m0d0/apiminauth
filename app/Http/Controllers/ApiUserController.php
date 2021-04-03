@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApiUserController extends Controller
 {
@@ -24,7 +25,7 @@ class ApiUserController extends Controller
         $user->institution_id = $request->institution_id;        
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->email); 
+        $user->password = Hash::make($request->email); 
         $user->state = 'ACTIVO';
         $user->save();
 
