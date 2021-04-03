@@ -20,8 +20,8 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         $user = new User;
-        $user->institution_id = $request->institution_id;
         $user->profile_id = $request->profile_id;
+        $user->institution_id = $request->institution_id;        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->email); 
@@ -52,11 +52,10 @@ class ApiUserController extends Controller
     {
         $user = User::find($id);
         if($user) {
-            $user->user_id = $request->user_id;
+            $user->profile_id = $request->profile_id;
             $user->institution_id = $request->institution_id;
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = bcrypt($request->email);
             $user->save();
 
             return response()->json([
